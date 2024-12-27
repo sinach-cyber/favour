@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatable" content="IE=edge">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Live Clock</title>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="clock-element">
+        <div class="stick-primary"></div>
+        <div class="sticks stick-1"></div>
+        <div class="sticks stick-2"></div>
+        <div class="sticks stick-3"></div>
+        <div class="sticks stick-4"></div>
+      </div>
+      <div id="inner-circle"></div>
+      <div class="CC"></div>
+      <div class="sec-hand"></div>
+      <div class="min-hand"></div>
+      <div class="hour-hand"></div>
+      <div class="date">SAT 14</div>
+      
+    </div>
+    <script>
+      const secHand =document.querySelector('.sec-hand');
+      const minHand =document.querySelector('.min-hand');
+      const hourHand =document.querySelector('.hour-hand');
+      const clockHand =document.querySelector('.date');
+
+      function setDate(){
+        let instance = new Date();
+        let sec = instance.getSeconds();
+        let min = instance.getMinutes();
+        let hrs = instance.getHours();
+        let day = instance.getDay();
+
+        let secAngle = (sec /60) * 360;
+        secHand.style.transform = `rotate(${secAngle}deg)`;
+
+        let minAngle = (min /60) * 360;
+        minHand.style.transform = `rotate(${minAngle}deg)`;
+
+        let hrsAngle = (hrs /60) * 360;
+        hourHand.style.transform = `rotate(${hrsAngle}deg)`;
+
+        let days = { 1:'MON',2:'TUE',3:'WED',4:'THU',5:'FRI',6:'SAT',7:'SUN'};
+        clockDate.innerHTML = `${days[day]} ${instance.getDate()}`;
+      }
+      setInterval(setDate, 1000);
+    </script>
+  </body>
+</html>
